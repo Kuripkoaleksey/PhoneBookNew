@@ -148,6 +148,7 @@ public class PhoneBook {
         System.out.println("Введите букву или несколько букв, которые есть в фамилиии");
         String searchStar = scanner.nextLine().toLowerCase();
         int count = 1;
+        int slov = 0;
         int i;
         String[] arrStar = searchStar.split("[*]");
         for (Person person : contacts) {
@@ -160,11 +161,14 @@ public class PhoneBook {
 //                    System.out.println("Surname: " + entry.getSurname());
 //                    System.out.println("Phone: " + entry.getPhone());
                         System.out.println("Найдена фамилия по Вашему запросу: " + person.getSurname());
-                    count++;
+                    count++;slov++;
 
                 }
             }
             count = 1;
+        }
+        if (slov == 0) {
+            System.out.println("Фамилия по таким параметарм не найдена");
         }
     }
 
