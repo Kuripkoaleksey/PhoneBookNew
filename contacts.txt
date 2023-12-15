@@ -1,0 +1,2 @@
+[Person{id=1, name='1', surname='1', phone='1'}, Person{id=2, name='2', surname='2', phone='2'}]
+[Person{id=1, name='2', surname='Иванов', phone='1423'}, Person{id=2, name='Артем', surname='Иванченко', phone='3535'}, Person{id=3, name='Алексей', surname='Курипко', phone='7457854'}]
