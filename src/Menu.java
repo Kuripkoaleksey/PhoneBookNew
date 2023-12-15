@@ -1,11 +1,9 @@
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
     private PhoneBook phoneBook;
     private Person person;
     private Scanner scanner;
-
 
     public void menuProg() throws Exception {
         phoneBook = new PhoneBook();

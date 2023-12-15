@@ -1,10 +1,10 @@
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static java.util.Arrays.stream;
 
 
 public class PhoneBook {
@@ -31,17 +31,46 @@ public class PhoneBook {
     }
 
     public void addPerson(Person person) throws Exception {
+
         contacts.add(person);
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите ID:");
-        person.setId(mScanerint());
-//        person.setName(scanner.nextLine());
+        person.setId(contacts.size());
         System.out.println("Введите имя:");
         person.setName(scanner.nextLine());
         System.out.println("Введите фамилию:");
         person.setSurname(scanner.nextLine());
+        System.out.println("Введите отчество:");
+        person.setFathername(scanner.nextLine());
         System.out.println("Введите телефон:");
         person.setPhone(scanner.nextLine());
+        System.out.println("Введите тип телефона (MOB,HOME, FAX):");
+        person.setPhoneTypes(String.valueOf(PhoneTypes.valueOf(scanner.nextLine().toUpperCase())));
+        System.out.print("Введите значение для gender (female/male): ");
+//        person.setGender(String.valueOf(gender.valueOf(scanner.nextLine().toUpperCase())));
+
+        switch (String.valueOf(gender.valueOf(scanner.nextLine().toUpperCase()))) {
+            case "FEMALE":
+                System.out.println("Вы ввели женский пол");
+                person.setGender("FEMALE");
+                break;
+            case "MALE":
+                System.out.println("Вы ввели мужской пол");
+                person.setGender("MALE");
+                break;
+            default:
+                System.out.println("Некорректное значение для gender");
+        }
+        System.out.println("Введите дату вашего рождения в формате yyyy.mm.dd");
+        String dateString = scanner.nextLine();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+        Date date = format.parse(dateString);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH)+1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        person.setBirthdayStr(String.valueOf(Person.AgeCalculator.calculateAge(LocalDate.of(year, month, day), LocalDate.now())));
     }
 
     public void printAllPerson() {
@@ -49,13 +78,18 @@ public class PhoneBook {
             System.out.println("ID: " + entry.getId());
             System.out.println("Name: " + entry.getName());
             System.out.println("Surname: " + entry.getSurname());
+            System.out.println("Fathername: " + entry.getFathername());
             System.out.println("Phone: " + entry.getPhone());
+            System.out.println("Gender: " + entry.getGender());
+            System.out.println("Phone Type: " + entry.getPhoneTypes());
+            System.out.println("Возраст: " + entry.getBirthdayStr());
             System.out.println();
         }
     }
 
     public void deletePerson() {
         System.out.println("Введите фамилию контакта, который хотите удалить");
+        int i = 1;
         Scanner scanner = new Scanner(System.in);
         String Surname = scanner.nextLine().toLowerCase();
         boolean isDelete = false;
@@ -67,6 +101,11 @@ public class PhoneBook {
                 break;
             }
         }
+        if (isDelete == true) for (Person person : contacts) {
+            person.setId(i);
+            i++;
+        }
+
         if (isDelete == false) {
             System.out.println("Контакт с такой фамилией не найден");
         }
@@ -161,7 +200,8 @@ public class PhoneBook {
 //                    System.out.println("Surname: " + entry.getSurname());
 //                    System.out.println("Phone: " + entry.getPhone());
                         System.out.println("Найдена фамилия по Вашему запросу: " + person.getSurname());
-                    count++;slov++;
+                    count++;
+                    slov++;
 
                 }
             }
