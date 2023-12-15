@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Scanner;
+
 public class Menu {
     private PhoneBook phoneBook;
     private Person person;
@@ -29,29 +30,28 @@ public class Menu {
                 phoneBook.addPerson(person);
             } else if (action.equals("2")) {
                 phoneBook.printAllPerson();
-            }else  if (action.equals("3")) {
+            } else if (action.equals("3")) {
                 phoneBook.deletePerson();
-            }else  if (action.equals("4")) {
-                phoneBook.saveDataFile (person);
-            }else  if (action.equals("5")) {
+            } else if (action.equals("4")) {
+                phoneBook.saveDataFile(person);
+            } else if (action.equals("5")) {
                 phoneBook.sortirovka();
-            }else  if (action.equals("6")) {
+            } else if (action.equals("6")) {
                 phoneBook.filtacia();
-            }else  if (action.equals("7")) {
+            } else if (action.equals("7")) {
                 phoneBook.redactirovanie();
-            }else  if (action.equals("8")) {
+            } else if (action.equals("8")) {
                 phoneBook.poiskBukva();
-            }else  if (action.equals("9")) {
+            } else if (action.equals("9")) {
                 phoneBook.poiskPropusk();
-            }else if (action.equals("10")){
+            } else if (action.equals("10")) {
                 System.out.println("До свидания!");
                 System.exit(0);
                 break;
             }
-            }
-            while (true) ;
-
-
-
         }
+        while (true);
+
+
     }
+}

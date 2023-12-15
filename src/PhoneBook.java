@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import static java.util.Arrays.stream;
 
 
-public  class PhoneBook {
+public class PhoneBook {
     public List<Person> contacts = new ArrayList<>();
 
     private List<String> toLowerCase(List<String> list) {
@@ -18,12 +18,24 @@ public  class PhoneBook {
         return listArr;
     }
 
-    public void addPerson(Person person) {
+    public int mScanerint() throws Exception {
+        int k = 0;
+        Scanner scanner = new Scanner(System.in);
+        boolean isInt = scanner.hasNextInt();
+        if (isInt) k = scanner.nextInt();
+
+        if (k >= 1) {
+            return k;
+        }
+        throw new Exception("Для записи ID нужно вводить только цифры ,больше нуля, буквы вводить нельзчя");
+    }
+
+    public void addPerson(Person person) throws Exception {
         contacts.add(person);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите ID:");
-        person.setId(scanner.nextInt());
-        person.setName(scanner.nextLine());
+        person.setId(mScanerint());
+//        person.setName(scanner.nextLine());
         System.out.println("Введите имя:");
         person.setName(scanner.nextLine());
         System.out.println("Введите фамилию:");
@@ -45,10 +57,10 @@ public  class PhoneBook {
     public void deletePerson() {
         System.out.println("Введите фамилию контакта, который хотите удалить");
         Scanner scanner = new Scanner(System.in);
-        String Surname = scanner.nextLine();
+        String Surname = scanner.nextLine().toLowerCase();
         boolean isDelete = false;
         for (Person person : contacts) {
-            if (person.getSurname().equals(Surname)) {
+            if (person.getSurname().toLowerCase().equals(Surname)) {
                 contacts.remove(person);
                 System.out.println("Контакт удален");
                 isDelete = true;
@@ -77,7 +89,6 @@ public  class PhoneBook {
     }
 
     public void sortirovka() {
-
         List<Person> sortedContacts = contacts.stream()
                 .sorted(Comparator.comparing(Person::getSurname).reversed())
                 .collect(Collectors.toList());
@@ -93,9 +104,9 @@ public  class PhoneBook {
     public void filtacia() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите букву, с которой начинается фамилия");
-        String Surname = scanner.nextLine();
+        String Surname = scanner.nextLine().toLowerCase();
         List<Person> filteredContacts = contacts.stream()
-                .filter(person -> person.getSurname().startsWith(Surname))
+                .filter(person -> person.getSurname().toLowerCase().startsWith(Surname))
                 .collect(Collectors.toList());
         for (Person entry : filteredContacts) {
             System.out.println("ID: " + entry.getId());
@@ -110,10 +121,10 @@ public  class PhoneBook {
         System.out.println("Введите Фамилию контакта, который хотите отредактировать");
         int Id;
         Scanner scanner = new Scanner(System.in);
-        String Surname = scanner.nextLine();
+        String Surname = scanner.nextLine().toLowerCase();
 
         for (Person person : contacts) {
-            if (person.getSurname().equals(Surname)) {
+            if (person.getSurname().toLowerCase().equals(Surname)) {
                 Id = person.getId();
                 contacts.remove(person);
                 contacts.add(person);
@@ -125,7 +136,6 @@ public  class PhoneBook {
                 person.setSurname(scanner.nextLine());
                 System.out.println("Введите телефон:");
                 person.setPhone(scanner.nextLine());
-                System.out.println("Контакт удален");
                 System.out.println("Контакт отредактирован");
                 break;
             }
@@ -136,13 +146,13 @@ public  class PhoneBook {
     public void poiskBukva() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите букву или несколько букв, которые есть в фамилиии");
-        String searchStar = scanner.nextLine();
+        String searchStar = scanner.nextLine().toLowerCase();
         int count = 1;
         int i;
         String[] arrStar = searchStar.split("[*]");
         for (Person person : contacts) {
             for (i = 0; i <= arrStar.length - 1; i++) {
-                if (person.getSurname().contains(arrStar[i]) && person.getSurname().contains(arrStar[arrStar.length - 1])) {
+                if (person.getSurname().toLowerCase().contains(arrStar[i]) && person.getSurname().toLowerCase().contains(arrStar[arrStar.length - 1])) {
                     if (count == 1)
 //                for (Person entry : contacts) {
 //                    System.out.println("ID: " + entry.getId());
@@ -161,18 +171,18 @@ public  class PhoneBook {
     public void poiskPropusk() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите фамилию, в месте пропущенной буквы напишите _ , например: Пе_ров");
-        String searchPropusk = scanner.nextLine();
+        String searchPropusk = scanner.nextLine().toLowerCase();
         int count = 1;
-        int slov =0;
+        int slov = 0;
         int i;
         String[] arrPropusk = searchPropusk.split("[_]");
         String[] arrPropuskDlina = searchPropusk.split("");
         if (arrPropuskDlina.length > arrPropusk.length) {
             for (Person person : contacts) {
-                String[] arrSlovo = person.getSurname().split("");
+                String[] arrSlovo = person.getSurname().toLowerCase().split("");
                 int dlina = arrSlovo.length;
                 for (i = 0; i <= arrPropusk.length - 1; i++) {
-                    if (person.getSurname().contains(arrPropusk[i]) && person.getSurname().contains(arrPropusk[arrPropusk.length - 1])) {
+                    if (person.getSurname().toLowerCase().contains(arrPropusk[i]) && person.getSurname().toLowerCase().contains(arrPropusk[arrPropusk.length - 1])) {
                         if (count == 1 && ((arrPropuskDlina.length) == dlina))
 //                for (Person entry : contacts) {
 //                    System.out.println("ID: " + entry.getId());
@@ -180,7 +190,8 @@ public  class PhoneBook {
 //                    System.out.println("Surname: " + entry.getSurname());
 //                    System.out.println("Phone: " + entry.getPhone());
                             System.out.println("Найдена фамилия по Вашему запросу: " + person.getSurname());
-                        count++; slov++;
+                        count++;
+                        slov++;
                     }
                 }
                 count = 1;
