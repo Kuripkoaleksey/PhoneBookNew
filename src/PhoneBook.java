@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
 public class PhoneBook {
     public List<Person> contacts = new ArrayList<>();
 
@@ -47,7 +46,6 @@ public class PhoneBook {
         System.out.println("Введите тип телефона (MOB,HOME, FAX):");
         person.setPhoneTypes(String.valueOf(PhoneTypes.valueOf(scanner.nextLine().toUpperCase())));
         System.out.print("Введите значение для gender (female/male): ");
-//        person.setGender(String.valueOf(gender.valueOf(scanner.nextLine().toUpperCase())));
 
         switch (String.valueOf(gender.valueOf(scanner.nextLine().toUpperCase()))) {
             case "FEMALE":
@@ -68,7 +66,7 @@ public class PhoneBook {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
+        int month = calendar.get(Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         person.setBirthdayStr(String.valueOf(Person.AgeCalculator.calculateAge(LocalDate.of(year, month, day), LocalDate.now())));
     }

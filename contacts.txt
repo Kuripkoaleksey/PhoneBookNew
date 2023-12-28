@@ -1,4 +1,1 @@
-[Person{id=1, name='1', surname='1', phone='1'}, Person{id=2, name='2', surname='2', phone='2'}]
-[Person{id=1, name='2', surname='Иванов', phone='1423'}, Person{id=2, name='Артем', surname='Иванченко', phone='3535'}, Person{id=3, name='Алексей', surname='Курипко', phone='7457854'}]
-
-[Person{id=1, name='1', surname='1', phone='1', fathername='1', gender='MALE', phoneTypes='MOB', birthdate=Tue Dec 26 17:47:04 MSK 2023, birthdayStr='43'}, Person{id=2, name='Alex', surname='Kuripko', phone='0384578', fathername='Leonidovich', gender='MALE', phoneTypes='MOB', birthdate=Tue Dec 26 17:47:49 MSK 2023, birthdayStr='43'}]
+[Person{id=1, name='1', surname='1', phone='1', fathername='1', gender='MALE', phoneTypes='MOB', birthdate=Tue Dec 28 10:47:04 MSK 2023, birthdayStr='43'}, Person{id=2, name='Alex', surname='Kuripko', phone='0384578', fathername='Leonidovich', gender='MALE', phoneTypes='MOB', birthdate=Tue Dec 28 10:47:49 MSK 2023, birthdayStr='43'}]

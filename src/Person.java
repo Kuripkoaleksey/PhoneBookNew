@@ -1,11 +1,10 @@
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
 enum PhoneTypes {
-    MOB,HOME,FAX
+    MOB, HOME, FAX
 }
 
 enum gender {
@@ -28,21 +27,6 @@ public class Person {
                 '}';
     }
 
-//    @Override
-//    public String toString() {
-//        String gender;
-//        return "Person{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", surname='" + surname + '\'' +
-//                ", phone='" + phone + '\'' +
-//                ", fathername='" + fathername + '\'' +
-//                ", phoneTypes=" + phoneTypes +
-//                ", birthdate=" + birthdate +
-//                ", birthdayStr='" + birthdayStr + '\'' +
-//                '}';
-//    }
-
     private int id;
     private String name;
     private String surname;
@@ -60,7 +44,7 @@ public class Person {
         this.surname = surname;
         this.phone = phone;
         this.fathername = fathername;
-        this.gender= gender;
+        this.gender = gender;
         this.phoneTypes = phoneTypes;
         this.birthdate = birthdate;
         this.birthdayStr = birthdayStr;
@@ -138,16 +122,11 @@ public class Person {
         this.birthdayStr = birthdayStr;
     }
 
-
-
-
-
-
     public class AgeCalculator {
 
         public static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
-            LocalDate birthDate = LocalDate.of(scanner.nextInt(), scanner.nextInt()+1,scanner.nextInt());
+            LocalDate birthDate = LocalDate.of(scanner.nextInt(), scanner.nextInt() + 1, scanner.nextInt());
             LocalDate currentDate = LocalDate.now();
             int age = calculateAge(birthDate, currentDate);
             System.out.println("Age: " + age);
@@ -157,5 +136,6 @@ public class Person {
             Period period = Period.between(birthDate, currentDate);
             return period.getYears();
         }
-    }}
+    }
+}
 
